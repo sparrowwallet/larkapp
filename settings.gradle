@@ -1,2 +1,3 @@
 rootProject.name = 'larkapp'
-
+include 'drongo'
+include 'lark'
