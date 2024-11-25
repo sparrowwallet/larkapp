@@ -1,0 +1,31 @@
+plugins {
+    id 'application'
+}
+
+group = 'com.sparrowwallet'
+version = '0.9'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://code.sparrowwallet.com/api/packages/sparrowwallet/maven' }
+}
+
+tasks.withType(AbstractArchiveTask) {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+application {
+    mainModule = 'com.sparrowwallet.larkapp'
+    mainClass = 'com.sparrowwallet.larkapp.LarkCli'
+}
+
+dependencies {
+    implementation('org.jcommander:jcommander:2.0')
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
