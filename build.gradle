@@ -1,10 +1,11 @@
 plugins {
     id 'application'
+    id 'org.beryx.jlink' version '3.1.1'
     id 'org.gradlex.extra-java-module-info' version '1.9'
 }
 
 group = 'com.sparrowwallet'
-version = '0.9'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -33,6 +34,24 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jlink {
+    options = ['--strip-native-commands', '--strip-java-debug-attributes', '--compress', 'zip-6', '--no-header-files', '--no-man-pages', '--ignore-signing-information', '--exclude-files', '**.png']
+    launcher {
+        name = 'lark'
+    }
+    jpackage {
+        imageName = "Lark"
+        installerName = "Lark"
+        appVersion = "${version}"
+        skipInstaller = true
+        if(org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+            imageOptions = ["--win-console"]
+        } else {
+            imageOptions = []
+        }
+    }
 }
 
 extraJavaModuleInfo {
