@@ -1,4 +1,4 @@
-module com.sparrowwallet.larkapp {
+open module com.sparrowwallet.larkapp {
     requires com.sparrowwallet.lark;
     requires com.sparrowwallet.drongo;
     requires com.fasterxml.jackson.databind;

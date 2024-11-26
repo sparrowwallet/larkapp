@@ -42,8 +42,8 @@ jlink {
         name = 'lark'
     }
     jpackage {
-        imageName = "Lark"
-        installerName = "Lark"
+        imageName = "lark"
+        installerName = "lark"
         appVersion = "${version}"
         skipInstaller = true
         if(org.gradle.internal.os.OperatingSystem.current().isWindows()) {
@@ -64,18 +64,12 @@ extraJavaModuleInfo {
         exports('com.beust.jcommander')
     }
     module('org.hid4java:hid4java', 'org.hid4java') {
+        requires("com.sun.jna")
         exports('org.hid4java')
     }
-    module('org.usb4java:usb4java', 'org.usb4java') {
+    module('com.sparrowwallet:usb4java', 'org.usb4java') {
         exports('org.usb4java')
     }
-    module('org.usb4java:libusb4java|linux-x86', 'org.usb4java.linux_x86')
-    module('org.usb4java:libusb4java|linux-x86-64', 'org.usb4java.linux_x86_64')
-    module('org.usb4java:libusb4java|win32-x86', 'org.usb4java.win32_x86')
-    module('org.usb4java:libusb4java|win32-x86-64', 'org.usb4java.win32_x86_64')
-    module('org.usb4java:libusb4java|darwin-x86-64', 'org.usb4java.darwin_x86_64')
-    module('org.usb4java:libusb4java|linux-arm', 'org.usb4java.linux_arm')
-    module('org.usb4java:libusb4java|linux-aarch64', 'org.usb4java.linux_aarch64')
     module('com.google.guava:listenablefuture|empty-to-avoid-conflict-with-guava', 'com.google.guava.listenablefuture')
     module('com.google.code.findbugs:jsr305', 'com.google.code.findbugs.jsr305')
 }
