@@ -63,7 +63,7 @@ extraJavaModuleInfo {
     module('org.jcommander:jcommander', 'org.jcommander') {
         exports('com.beust.jcommander')
     }
-    module('org.hid4java:hid4java', 'org.hid4java') {
+    module('com.sparrowwallet:hid4java', 'org.hid4java') {
         requires('com.sun.jna')
         exports('org.hid4java')
         exports('org.hid4java.jna')
