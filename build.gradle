@@ -64,8 +64,9 @@ extraJavaModuleInfo {
         exports('com.beust.jcommander')
     }
     module('org.hid4java:hid4java', 'org.hid4java') {
-        requires("com.sun.jna")
+        requires('com.sun.jna')
         exports('org.hid4java')
+        exports('org.hid4java.jna')
     }
     module('com.sparrowwallet:usb4java', 'org.usb4java') {
         exports('org.usb4java')
