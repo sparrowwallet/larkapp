@@ -77,6 +77,5 @@ extraJavaModuleInfo {
     module('com.sparrowwallet:usb4java', 'org.usb4java') {
         exports('org.usb4java')
     }
-    module('com.google.guava:listenablefuture|empty-to-avoid-conflict-with-guava', 'com.google.guava.listenablefuture')
     module('com.google.code.findbugs:jsr305', 'com.google.code.findbugs.jsr305')
 }
