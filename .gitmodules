@@ -1,6 +1,8 @@
 [submodule "drongo"]
 	path = drongo
 	url = ../../sparrowwallet/drongo.git
+	branch = master
 [submodule "lark"]
 	path = lark
 	url = ../../sparrowwallet/lark.git
+	branch = master
