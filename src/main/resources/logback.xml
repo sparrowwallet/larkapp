@@ -1,4 +1,20 @@
 <configuration>
+    <logger name="org.eclipse.jetty.util.thread.ReservedThreadExecutor" level="OFF" />
+    <logger name="org.eclipse.jetty.util.thread.QueuedThreadPool" level="OFF" />
+    <logger name="org.eclipse.jetty.io.ManagedSelector" level="OFF" />
+    <logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="OFF" />
+    <logger name="org.eclipse.jetty.io.ChannelEndPoint" level="OFF" />
+    <logger name="org.eclipse.jetty.io.ssl.SslConnection" level="OFF" />
+    <logger name="org.eclipse.jetty.client.HttpReceiver" level="OFF" />
+    <logger name="org.eclipse.jetty.client.TimeoutCompleteListener" level="OFF" />
+    <logger name="org.eclipse.jetty.client.AbstractConnectionPool" level="OFF" />
+    <logger name="org.eclipse.jetty.client.HttpDestination" level="OFF" />
+    <logger name="org.eclipse.jetty.client.HttpChannel" level="OFF" />
+    <logger name="org.eclipse.jetty.client.HttpExchange" level="OFF" />
+    <logger name="org.eclipse.jetty.client.HttpParser" level="OFF" />
+    <logger name="org.eclipse.jetty.http.HttpParser" level="OFF" />
+    <logger name="org.eclipse.jetty.util.log" level="OFF" />
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%date %level %msg%n</pattern>
