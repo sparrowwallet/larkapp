@@ -7,11 +7,11 @@ Documentation on the commands is available by running it with `--help`.
 
 ## Running
 
-Depending on your operating system, Lark can be run from the command line as follows: 
+Depending on your operating system, once extracted/installed, Lark can be run from the command line as follows: 
 
 #### Linux
 ```shell
-> lark
+> lark/bin/lark
 ```
 
 #### macOS
@@ -21,7 +21,7 @@ Depending on your operating system, Lark can be run from the command line as fol
 
 #### Windows
 ```shell
-> lark.exe
+> lark/lark.exe
 ```
 
 ### Example usage

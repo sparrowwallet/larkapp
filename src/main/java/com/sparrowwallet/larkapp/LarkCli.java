@@ -37,7 +37,7 @@ public class LarkCli {
         Args args = new Args();
         JCommander.Builder jCommanderBuilder = JCommander.newBuilder()
                 .addObject(args)
-                .programName(APP_NAME.toLowerCase(Locale.ROOT));
+                .programName(OsType.getCurrent() == OsType.MACOS ? APP_NAME : APP_NAME.toLowerCase(Locale.ROOT));
         for(Command command : commands) {
             jCommanderBuilder.addCommand(command.getName(), command);
         }
@@ -93,14 +93,18 @@ public class LarkCli {
             lark.addWalletName(walletDescriptor, args.walletName);
         }
 
-        try {
-            for(Command command : commands) {
-                if(command.getName().equals(jCommander.getParsedCommand())) {
-                    command.run(jCommander, lark, args);
+        if(jCommander.getParsedCommand() == null) {
+            jCommander.usage();
+        } else {
+            try {
+                for(Command command : commands) {
+                    if(command.getName().equals(jCommander.getParsedCommand())) {
+                        command.run(jCommander, lark, args);
+                    }
                 }
+            } catch(DeviceException e) {
+                showErrorAndExit(e.getMessage());
             }
-        } catch(DeviceException e) {
-            showErrorAndExit(e.getMessage());
         }
     }
 
