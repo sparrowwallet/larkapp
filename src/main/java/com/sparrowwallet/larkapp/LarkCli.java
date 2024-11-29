@@ -11,8 +11,7 @@ import com.sparrowwallet.larkapp.args.*;
 import org.slf4j.Logger;
 import org.slf4j.event.Level;
 
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class LarkCli {
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(LarkCli.class);
@@ -91,6 +90,25 @@ public class LarkCli {
             }
             OutputDescriptor walletDescriptor = getWalletDescriptor(args);
             lark.addWalletName(walletDescriptor, args.walletName);
+        }
+
+        if(args.stdin) {
+            List<String> stdinArgs = new ArrayList<>();
+            try(Scanner scanner = new Scanner(System.in)) {
+                while(scanner.hasNextLine()) {
+                    String line = scanner.nextLine().trim();
+                    if(line.isEmpty()) {
+                        break;
+                    }
+
+                    Collections.addAll(stdinArgs, line.split("\\s+"));
+                }
+            }
+            try {
+                jCommander.parse(stdinArgs.toArray(new String[0]));
+            } catch(ParameterException e) {
+                showErrorAndExit(e.getMessage());
+            }
         }
 
         if(jCommander.getParsedCommand() == null) {

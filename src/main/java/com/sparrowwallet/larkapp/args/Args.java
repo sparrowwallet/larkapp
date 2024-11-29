@@ -27,6 +27,9 @@ public class Args {
     @Parameter(names = { "--debug" }, description = "Set log level to debug. If `--level` is provided it takes priority")
     public boolean debug;
 
+    @Parameter(names = { "--stdin" }, description = "Enter commands and arguments via stdin")
+    public boolean stdin;
+
     @Parameter(names = { "--fingerprint", "-f" }, description = "Specify the device to connect to using the first 4 bytes of the hash160 of the master public key. It will connect to the first device that matches this fingerprint.")
     public byte[] fingerprint;
 
