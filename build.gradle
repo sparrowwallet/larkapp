@@ -5,7 +5,7 @@ plugins {
 }
 
 org.gradle.internal.os.OperatingSystem os = org.gradle.internal.os.OperatingSystem.current()
-String releaseArch = System.getProperty("os.arch") == "aarch64" ? "aarch64" : "x86_64"
+String releaseArch = System.getProperty('os.arch') == 'aarch64' ? 'aarch64' : 'x86_64'
 
 group = 'com.sparrowwallet'
 version = '1.0.0'
@@ -51,18 +51,20 @@ jlink {
         name = 'lark'
     }
     jpackage {
-        imageName = os.isMacOsX() ? "Lark" : "lark"
+        imageName = os.isMacOsX() ? 'Lark' : 'lark'
         appVersion = "${version}"
         skipInstaller = true
         if(os.isWindows()) {
-            imageOptions = ["--win-console"]
+            imageOptions = ['--win-console', '--resource-dir', 'src/main/deploy/package/linux/']
         } else if(os.isMacOsX()) {
             imageOptions = ['--icon', 'src/main/deploy/package/macos/lark.icns', '--resource-dir', 'src/main/deploy/package/macos/']
+        } else if(os.isLinux()) {
+            imageOptions = ['--resource-dir', 'src/main/deploy/package/linux/']
         }
     }
 }
 
-tasks.jlink.finalizedBy "addUserWritePermission"
+tasks.jlink.finalizedBy 'addUserWritePermission'
 
 tasks.register('addUserWritePermission', Exec) {
     if(os.isWindows()) {
@@ -77,26 +79,26 @@ tasks.register('removeGroupWritePermission', Exec) {
 }
 
 tasks.register('packageZipDistribution', Zip) {
-    group = "Other"
-    description = "Packages a zip of the application image"
-    archiveFileName = "lark-${version}.zip"
+    group = 'Other'
+    description = 'Packages a zip of the application image'
+    archiveFileName = "lark-${version}-${releaseArch}.zip"
     destinationDirectory = layout.buildDirectory.dir('jpackage')
     preserveFileTimestamps = os.isMacOsX()
     from(layout.buildDirectory.dir('jpackage')) {
-        include "lark/**"
-        include "Lark.app/**"
+        include 'lark/**'
+        include 'Lark.app/**'
     }
 }
 
 tasks.register('packageTarDistribution', Tar) {
-    group = "Other"
-    description = "Packages a tar.gz of the application image"
+    group = 'Other'
+    description = 'Packages a tar.gz of the application image'
     dependsOn removeGroupWritePermission
     archiveFileName = "lark-${version}-${releaseArch}.tar.gz"
     destinationDirectory = layout.buildDirectory.dir('jpackage')
     compression = Compression.GZIP
     from(layout.buildDirectory.dir('jpackage')) {
-        include "lark/**"
+        include 'lark/**'
     }
 }
 
