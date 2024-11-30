@@ -62,9 +62,18 @@ jlink {
             imageOptions = ['--resource-dir', 'src/main/deploy/package/linux/']
         }
     }
+    if(os.isLinux()) {
+        jpackageImage {
+            dependsOn('prepareModulesDir', 'copyUdevRules')
+        }
+    }
 }
 
-tasks.jlink.finalizedBy 'addUserWritePermission'
+if(os.isLinux()) {
+    tasks.jlink.finalizedBy('addUserWritePermission', 'copyUdevRules')
+} else {
+    tasks.jlink.finalizedBy('addUserWritePermission')
+}
 
 tasks.register('addUserWritePermission', Exec) {
     if(os.isWindows()) {
@@ -72,6 +81,12 @@ tasks.register('addUserWritePermission', Exec) {
     } else {
         commandLine 'chmod', '-R', 'u+w', layout.buildDirectory.dir('image/legal').get().toString()
     }
+}
+
+tasks.register('copyUdevRules', Copy) {
+    from('lark/src/main/resources/udev')
+    into(layout.buildDirectory.dir('image/conf/udev'))
+    include('*')
 }
 
 tasks.register('removeGroupWritePermission', Exec) {
