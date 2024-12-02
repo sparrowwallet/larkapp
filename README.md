@@ -14,6 +14,8 @@ Depending on your operating system, once extracted/installed, Lark can be run fr
 > lark/bin/lark
 ```
 
+Note that on Linux, udev rules [may need to be installed](https://github.com/sparrowwallet/lark/blob/master/src/main/resources/udev/README.md) if you are not using the .deb/.rpm installation package.
+
 #### macOS
 ```shell
 > Lark.app/Contents/MacOS/Lark
@@ -55,6 +57,10 @@ or for those without SSH credentials:
 
 In order to build, Lark requires Java 22 or higher to be installed.
 The release binaries are built with [Eclipse Temurin 22.0.2+9](https://github.com/adoptium/temurin22-binaries/releases/tag/jdk-22.0.2%2B9).
+
+Other packages may also be necessary to build depending on the platform. On Debian/Ubuntu systems:
+
+`sudo apt install -y rpm fakeroot binutils`
 
 The Lark binaries can be built from source using
 

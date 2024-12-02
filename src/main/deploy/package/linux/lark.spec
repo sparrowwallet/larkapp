@@ -79,7 +79,7 @@ sed -i -e 's/.*/%dir "&"/' %{package_filelist}
 package_type=rpm
 
 # Install udev rules
-install -m 644 %{buildroot}/opt/lark/lib/runtime/conf/udev/*.rules /etc/udev/rules.d
+install -m 644 /opt/lark/lib/runtime/conf/udev/*.rules /etc/udev/rules.d
 
 # Reload udev rules
 udevadm control --reload
