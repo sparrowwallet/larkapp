@@ -53,13 +53,14 @@ jlink {
     jpackage {
         imageName = os.isMacOsX() ? 'Lark' : 'lark'
         appVersion = "${version}"
-        skipInstaller = true
+        skipInstaller = !os.isLinux()
         if(os.isWindows()) {
             imageOptions = ['--win-console', '--resource-dir', 'src/main/deploy/package/linux/']
         } else if(os.isMacOsX()) {
             imageOptions = ['--icon', 'src/main/deploy/package/macos/lark.icns', '--resource-dir', 'src/main/deploy/package/macos/']
         } else if(os.isLinux()) {
-            imageOptions = ['--resource-dir', 'src/main/deploy/package/linux/']
+            imageOptions = ['--resource-dir', 'src/main/deploy/package/linux/', '--icon', 'src/main/deploy/package/linux/lark.png']
+            installerOptions = ['--resource-dir', 'src/main/deploy/package/linux/', '--linux-rpm-license-type', 'ASL 2.0', '--linux-deb-maintainer', 'mail@sparrowwallet.com']
         }
     }
     if(os.isLinux()) {
