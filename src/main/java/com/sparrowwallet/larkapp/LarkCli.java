@@ -75,6 +75,11 @@ public class LarkCli {
             lark.setPassphrase(args.passphrase);
         }
 
+        if(args.emulators) {
+            System.err.println("Emulators are not currently supported");
+            System.exit(1);
+        }
+
         if(args.walletRegistration != null) {
             if(args.walletDescriptor == null || args.walletName == null) {
                 System.err.println("If `--wallet-registration` is provided, `--wallet-descriptor` and `--wallet-name` must also be provided");
