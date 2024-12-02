@@ -1,3 +1,5 @@
+![Lark logo](https://github.com/sparrowwallet/larkapp/raw/refs/heads/master/larklogo.png)
+
 # Lark App
 
 The Lark application is a command line app for interacting with USB hardware wallets in Bitcoin related functions. 
