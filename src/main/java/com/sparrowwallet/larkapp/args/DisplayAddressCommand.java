@@ -3,9 +3,13 @@ package com.sparrowwallet.larkapp.args;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sparrowwallet.drongo.KeyDerivation;
 import com.sparrowwallet.drongo.OutputDescriptor;
 import com.sparrowwallet.lark.Lark;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Parameters(commandDescription = "Display an address")
 public class DisplayAddressCommand extends AbstractCommand {
@@ -32,6 +36,7 @@ public class DisplayAddressCommand extends AbstractCommand {
         }
 
         String address;
+        Map<OutputDescriptor, byte[]> existingRegistrations = new HashMap<>(lark.getWalletRegistrations());
         if(desc != null) {
             OutputDescriptor outputDescriptor;
             try {
@@ -65,8 +70,10 @@ public class DisplayAddressCommand extends AbstractCommand {
             }
         }
 
-        value(new AddressValue(address));
+        Map<String, WalletRegistration> newRegistrations = getNewRegistrations(lark, existingRegistrations);
+        value(new AddressValue(address, newRegistrations));
     }
 
-    private record AddressValue(String address) {}
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private record AddressValue(String address, Map<String, WalletRegistration> registrations) {}
 }
