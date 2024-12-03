@@ -97,7 +97,11 @@ tasks.register('removeGroupWritePermission', Exec) {
 tasks.register('packageZipDistribution', Zip) {
     group = 'Other'
     description = 'Packages a zip of the application image'
-    archiveFileName = "lark-${version}-${releaseArch}.zip"
+    if(os.isWindows()) {
+        archiveFileName = "lark-${version}-win-${releaseArch}.zip"
+    } else {
+        archiveFileName = "lark-${version}-${releaseArch}.zip"
+    }
     destinationDirectory = layout.buildDirectory.dir('jpackage')
     preserveFileTimestamps = os.isMacOsX()
     from(layout.buildDirectory.dir('jpackage')) {
