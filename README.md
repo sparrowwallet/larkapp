@@ -30,15 +30,37 @@ Note that on Linux, udev rules [may need to be installed](https://github.com/spa
 
 ### Example usage
 
-Lark
+Show usage:
 
 ```shell
 lark --help
 ```
 
+Enumerate all connected hardware wallets
+
 ```shell
 lark enumerate
 ```
+
+Get Native Segwit xpub
+
+```shell
+lark --device-type trezor getxpub "m/84'/0'/0'"
+```
+
+Sign a testnet transaction
+
+```shell
+lark --chain test --device-type coldcard signtx "cHNid..."
+```
+
+Sign a multisig transaction, supplying a previous wallet registration
+
+```shell
+lark --device-type ledger --wallet-desc "wsh(sortedmulti(2,[2811576b/48h/0h/0h/2h]xpub...,[6533280b/48h/0h/0h/2h]xpub...))" --wallet-name "2 of 2 Multisig" --wallet-registration "c0ee51bae9b3e5ee5a5e01dbcd336cd5c5f8a5b760d1c68f6a2a0b91c2580406" signtx "cHNid..."
+```
+
+### Running from source
 
 If you prefer to run Lark directly from source, it can be launched from within the project directory with
 
