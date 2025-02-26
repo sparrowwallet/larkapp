@@ -17,7 +17,7 @@ public class LarkCli {
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(LarkCli.class);
 
     public static final String APP_NAME = "Lark";
-    public static final Version APP_VERSION = new Version("0.9");
+    public static final Version APP_VERSION = new Version("1.1.0");
 
     public static void main(String[] argv) throws Exception {
         Lark.setConsoleOutput(true);
@@ -54,7 +54,7 @@ public class LarkCli {
         }
 
         if(args.version) {
-            System.out.println(APP_NAME + " " + APP_VERSION);
+            System.out.println(APP_NAME + " " + APP_VERSION.get());
             System.exit(0);
         }
 
