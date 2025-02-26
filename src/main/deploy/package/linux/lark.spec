@@ -1,6 +1,6 @@
 Summary: lark
 Name: lark
-Version: 1.0.0
+Version: 1.1.0
 Release: 1
 License: Unknown
 Vendor: Unknown
