@@ -24,10 +24,19 @@ jobs:
         run: ./gradlew -v
       - name: Build with Gradle
         run: ./gradlew jpackage
-      - name: Package zip distribution
+      - name: Codesign, package and notarize macOS distribution
+        if: ${{ runner.os == 'macOS' }}
+        uses: sparrowwallet/github-actions/codesign-macos@v1
+        with:
+          certificate: ${{ secrets.MACOS_CERTIFICATE }}
+          certificate-password: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+          apple-id: ${{ secrets.MACOS_NOTARIZATION_APPLE_ID }}
+          team-id: ${{ secrets.MACOS_NOTARIZATION_TEAM_ID }}
+          notarization-password: ${{ secrets.MACOS_NOTARIZATION_PASSWORD }}
+      - name: Package Windows zip distribution
         if: ${{ runner.os == 'Windows' || runner.os == 'macOS' }}
         run: ./gradlew packageZipDistribution
-      - name: Package tar distribution
+      - name: Package Linux tar distribution
         if: ${{ runner.os == 'Linux' }}
         run: ./gradlew packageTarDistribution
       - name: Upload Artifacts
@@ -38,3 +47,4 @@ jobs:
             build/jpackage/*
             !build/jpackage/Lark/
             !build/jpackage/lark/
+            !build/jpackage/Lark.app/
