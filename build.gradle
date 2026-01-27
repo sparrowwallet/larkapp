@@ -1,10 +1,10 @@
 plugins {
     id 'application'
-    id 'org.beryx.jlink' version '3.1.2'
-    id 'org.gradlex.extra-java-module-info' version '1.13'
+    id 'org.beryx.jlink' version '3.1.4-rc'
+    id 'org.gradlex.extra-java-module-info' version '1.13.1'
 }
 
-org.gradle.internal.os.OperatingSystem os = org.gradle.internal.os.OperatingSystem.current()
+def os = org.gradle.internal.os.OperatingSystem.current()
 String releaseArch = System.getProperty('os.arch') == 'aarch64' ? 'aarch64' : 'x86_64'
 
 group = 'com.sparrowwallet'
