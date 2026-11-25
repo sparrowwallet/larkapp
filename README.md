@@ -80,7 +80,7 @@ or for those without SSH credentials:
 `git clone --recursive https://github.com/sparrowwallet/larkapp.git`
 
 In order to build, Lark requires Java 25 or higher to be installed.
-The release binaries are built with [Eclipse Temurin 25.0.5+8](https://github.com/adoptium/temurin25-binaries/releases/tag/jdk-25.0.5%2B8).
+The release binaries are built with [Eclipse Temurin 25.0.5.1+2](https://github.com/adoptium/temurin25-binaries/releases/tag/jdk-25.0.5.1%2B2).
 
 Other packages may also be necessary to build depending on the platform. On Debian/Ubuntu systems:
 
